@@ -244,7 +244,6 @@
 
       // trigger change event on input
       $(this.element).trigger("keyup");
-      this.hide();
     },
 
     emojiMouseover: function(e) {

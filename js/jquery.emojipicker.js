@@ -31,7 +31,7 @@
     { name: 'flag', label: 'Flags' }
   ];
 
-  function EmojiPicker( element, options ) {
+  function Plugin( element, options ) {
 
     this.element = element;
     this.$el = $(element);
@@ -71,7 +71,7 @@
 
   }
 
-  $.extend(EmojiPicker.prototype, {
+  $.extend(Plugin.prototype, {
 
     init: function() {
       this.active = false;
@@ -125,17 +125,6 @@
         this.$picker.find('.emoji').css({'width':'1em', 'height':'1em'});
       }
 
-    },
-
-    destroyPicker: function() {
-      this.$picker.unbind('mouseover');
-      this.$picker.unbind('mouseout');
-      this.$picker.unbind('click');
-      this.$picker.remove();
-
-      $.removeData(this.$el.get(0), 'emojiPicker');
-
-      return this;
     },
 
     listen: function() {
@@ -204,7 +193,7 @@
 
       // Step 3
       var diffOffset = {
-        top: (elOffset.top - parentOffset.top),
+        top: (elOffset.top - this.settings.height - 100),
         left: (elOffset.left - parentOffset.top)
       };
 
@@ -217,22 +206,16 @@
     },
 
     hide: function() {
-      this.$picker.hide(this.settings.fadeTime, 'linear', function() {
+      this.$picker.fadeOut(this.settings.fadeTime, 'linear', function() {
         this.active = false;
-        if (this.settings.onHide) {
-          this.settings.onHide( this.$picker, this.settings, this.active );
-        }
       }.bind(this));
     },
 
     show: function() {
       this.$el.focus();
       this.updatePosition();
-      this.$picker.show(this.settings.fadeTime, 'linear', function() {
+      this.$picker.fadeIn(this.settings.fadeTime, 'linear', function() {
         this.active = true;
-        if (this.settings.onShow) {
-          this.settings.onShow( this.$picker, this.settings, this.active );
-        }
       }.bind(this));
     },
 
@@ -240,7 +223,7 @@
      *  EVENTS  *
      ************/
 
-    iconClicked : function() {
+    iconClicked : function(e) {
       if ( this.$picker.is(':hidden') ) {
         this.show();
         if( this.$picker.find('.search input').length > 0 ) {
@@ -403,10 +386,7 @@
         switch(options) {
           case 'toggle':
             plugin.iconClicked();
-            break;
-          case 'destroy':
-            plugin.destroyPicker();
-            break;
+          break;
         }
       });
       return this;
@@ -415,7 +395,7 @@
     this.each(function() {
       // Don't attach to the same element twice
       if ( !$.data( this, pluginName ) ) {
-        $.data( this, pluginName, new EmojiPicker( this, options ) );
+        $.data( this, pluginName, new Plugin( this, options ) );
       }
     });
     return this;
@@ -513,7 +493,7 @@
     var emojis = $.fn.emojiPicker.emojis;
     var i = Math.floor(Math.random() * (364 - 0) + 0);
     var emoji = emojis[i];
-    return 'Daily Emoji: <span class="eod"><span class="emoji emoji-' + emoji.name + '"></span> <span class="emojiName">' + emoji.name + '</span></span>';
+    return 'Random Emoji: <span class="eod"><span class="emoji emoji-' + emoji.name + '"></span> <span class="emojiName">' + emoji.name + '</span></span>';
   }
 
   function findEmoji(emojiShortcode) {

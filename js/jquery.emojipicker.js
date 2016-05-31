@@ -28,7 +28,7 @@
     { name: 'travel', label: 'Viajes & Lugares' },
     { name: 'object', label: 'Objetos' },
     { name: 'symbol', label: 'Símbolos' },
-    { name: 'flag', label: 'Banderas' } 
+    { name: 'flag', label: 'Banderas' }
   ];
 
   function Plugin( element, options ) {
@@ -442,8 +442,8 @@
 
     // Search
     nodes.push('<section class="search">');
-    nodes.push('<input type="search" placeholder="Search...">');
-    nodes.push('<div class="wrap" style="display:none;"><h1>Search Results</h1></div>');
+    nodes.push('<input type="search" placeholder="Buscar...">');
+    nodes.push('<div class="wrap" style="display:none;"><h1>Resultados de Búsqueda</h1></div>');
     nodes.push('</section>');
 
     // Recent Section, if localstorage support
@@ -459,7 +459,7 @@
       }
 
       nodes.push('<section class="recent" data-count="' + recentlyUsedEmojis.length + '"' + displayRecentlyUsed + '>');
-      nodes.push('<h1>Recently Used</h1><div class="wrap">');
+      nodes.push('<h1>Usados Recientemente</h1><div class="wrap">');
 
       for (var i = recentlyUsedEmojis.length-1; i > -1 ; i--) {
         nodes.push('<em><span class="emoji emoji-' + recentlyUsedEmojis[i] + '"></span></em>');

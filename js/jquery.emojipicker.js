@@ -21,14 +21,14 @@
       MAX_ICON_HEIGHT = 50;
 
   var categories = [
-    { name: 'people', label: 'People' },
-    { name: 'nature', label: 'Nature' },
-    { name: 'food', label: 'Food' },
-    { name: 'activity', label: 'Activities' },
-    { name: 'travel', label: 'Travel & Places' },
-    { name: 'object', label: 'Objects' },
-    { name: 'symbol', label: 'Symbols' },
-    { name: 'flag', label: 'Flags' }
+    { name: 'people', label: 'Personas' },
+    { name: 'nature', label: 'Naturaleza' },
+    { name: 'food', label: 'Comida' },
+    { name: 'activity', label: 'Actividades' },
+    { name: 'travel', label: 'Viajes & Lugares' },
+    { name: 'object', label: 'Objetos' },
+    { name: 'symbol', label: 'Símbolos' },
+    { name: 'flag', label: 'Banderas' } 
   ];
 
   function Plugin( element, options ) {
@@ -305,7 +305,7 @@
       for (var i = 0; i < categories.length; i++) {
         if (categories[i].name == section) { categoryTitle = categories[i].label; }
       }
-      if (categoryTitle == '') { categoryTitle = 'Recently Used'; }
+      if (categoryTitle == '') { categoryTitle = 'Usados Recientemente'; }
 
       var categoryCount = $('section.' + section).attr('data-count');
       var categoryHtml = '<em class="tabTitle">' + categoryTitle + ' <span class="count">(' + categoryCount + ' emojis)</span></em>';
@@ -493,7 +493,7 @@
     var emojis = $.fn.emojiPicker.emojis;
     var i = Math.floor(Math.random() * (364 - 0) + 0);
     var emoji = emojis[i];
-    return 'Random Emoji: <span class="eod"><span class="emoji emoji-' + emoji.name + '"></span> <span class="emojiName">' + emoji.name + '</span></span>';
+    return 'Emoji Aleatorio: <span class="eod"><span class="emoji emoji-' + emoji.name + '"></span> <span class="emojiName">' + emoji.name + '</span></span>';
   }
 
   function findEmoji(emojiShortcode) {

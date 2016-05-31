@@ -18,7 +18,7 @@
       MAX_WIDTH = 600,
       MIN_HEIGHT = 100,
       MAX_HEIGHT = 350,
-      MAX_ICON_HEIGHT = 50;
+      MAX_ICON_HEIGHT = 30;
 
   var categories = [
     { name: 'people', label: 'Personas' },
@@ -244,6 +244,7 @@
 
       // trigger change event on input
       $(this.element).trigger("keyup");
+      this.hide();
     },
 
     emojiMouseover: function(e) {
